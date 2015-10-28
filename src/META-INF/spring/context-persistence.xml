@@ -38,7 +38,7 @@
       </property>
       <property name="jpaProperties">
          <props>
-            <prop key="hibernate.hbm2ddl.auto">update</prop>
+            <prop key="hibernate.hbm2ddl.auto">validate</prop>
             <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
          </props>
       </property> 
@@ -46,11 +46,22 @@
   
    <!-- Simple implementation of the standard JDBC DataSource interface,
         configuring the plain old JDBC DriverManager via bean properties -->
-   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
       <property name="driverClassName" value="com.mysql.jdbc.Driver" />
       <property name="url" value="jdbc:mysql://localhost:3306/test" />
       <property name="username" value="root" />
       <property name="password" value="root" />
+   </bean> -->
+   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:${OPENSHIFT_MYSQL_DB_PORT}/test" />
+     <property name="username" value="adminjnBvh33" />
+      <property name="password" value="pQAxa8_BAUHa" />
+       
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/test" />
+     
+       <property name="username" value="root" />
+      <property name="password" value="root" /> -->
    </bean>
      
     <!-- This transaction manager is appropriate for applications that use a single JPA EntityManagerFactory for transactional data access.
@@ -58,6 +69,7 @@
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
       <property name="entityManagerFactory" ref="entityManagerFactoryBean" />
    </bean>
+   
     <context:annotation-config />
    <!-- responsible for registering the necessary Spring components that power annotation-driven transaction management;
         such as when @Transactional methods are invoked -->

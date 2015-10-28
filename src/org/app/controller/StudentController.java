@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import org.app.service.StudentMgr;
-
+import org.app.service.StudentService;
 import org.app.model.Student;
 import org.app.model.StudentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class StudentController {
 	//@Resource
 	@Autowired
+	
 	private StudentMgr studentManager;
-
 	public StudentController() {
 		// TODO Auto-generated constructor stub
 	}
