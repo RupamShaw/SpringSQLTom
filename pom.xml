@@ -155,6 +155,8 @@
         <configuration>
           <warSourceDirectory>WebContent</warSourceDirectory>
           <failOnMissingWebXml>false</failOnMissingWebXml>
+        <outputDirectory>deployments</outputDirectory>
+        <warName>ROOT</warName>
         </configuration>
       </plugin>
       <plugin>
