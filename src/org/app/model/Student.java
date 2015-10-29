@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement(name = "student")
 public class Student {
-
 	private static final long serialVersionUID = 1L;
 	@Id
   //  @GeneratedValue(strategy = IDENTITY)

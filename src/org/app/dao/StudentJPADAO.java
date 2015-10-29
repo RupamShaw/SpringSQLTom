@@ -38,7 +38,7 @@ public class StudentJPADAO implements StudentDAO {
 
 	public StudentJPADAO() {
 		// TODO Auto-generated constructor stub
-		System.out.println("StudentJPADAO --Constructor()");
+		System.out.println("StudentJPADAO********Constructor()");
 	
 	}
 

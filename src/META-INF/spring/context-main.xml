@@ -10,13 +10,11 @@
 
 	<context:property-placeholder
 		location="classpath*:META-INF/properties/*.properties" />
-	<bean id="studentController" class="org.app.controller.StudentController">
+ 	<!-- <bean id="studentController" class="org.app.controller.StudentController">
 		<property name="studentManager" ref ="studentManager"/>
-			
-		
-		
-	</bean>
-	<bean id="studentManager" name="studentManager" class="org.app.service.StudentMgr" />
+					
+	</bean> -->
+	<bean id="studentMgr" name="studentMgr" class="org.app.service.StudentService" />
 	<context:component-scan base-package="org.app" />
 
 </beans>

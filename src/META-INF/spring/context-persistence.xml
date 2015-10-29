@@ -58,7 +58,7 @@
      <property name="username" value="admincUDDmsC" />
       <property name="password" value="xhrmGKdPlFT1" />
        
-      <!--  <property name="url" value="jdbc:mysql://localhost:3306/test" />
+       <!-- <property name="url" value="jdbc:mysql://localhost:3306/test" />
      
        <property name="username" value="root" />
       <property name="password" value="root" /> -->

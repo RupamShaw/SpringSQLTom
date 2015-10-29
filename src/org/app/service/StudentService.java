@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.app.dao.StudentDAO;
+
 import org.app.dao.StudentJPADAO;
 
 import org.app.exception.DataNotFoundException;
@@ -19,6 +20,7 @@ import org.app.model.Student;
 import org.app.model.StudentStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Dell
  *
  */
-@Service
+@Service("studentMgr")
+
 public class StudentService implements StudentMgr{
 	//@Resource
 	 @Autowired
