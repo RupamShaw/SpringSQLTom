@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class StudentController {
 	//@Resource
 	@Autowired
-	
 	private StudentMgr studentManager;
 	public StudentController() {
 		// TODO Auto-generated constructor stub
