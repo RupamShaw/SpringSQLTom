@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Repository
+@Repository("studentDao")
 @Transactional
 public class StudentJPADAO implements StudentDAO {
 	@PersistenceContext
