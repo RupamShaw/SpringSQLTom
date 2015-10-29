@@ -36,10 +36,6 @@ public class StudentService implements StudentMgr{
 	//@Resource
 	 @Autowired
 	private StudentDAO studentDao;
-
-	
-
-
 	String className = getClass().getSimpleName();
 
 	public StudentService() {
