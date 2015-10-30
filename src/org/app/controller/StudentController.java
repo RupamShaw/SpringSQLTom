@@ -43,7 +43,7 @@ public class StudentController {
 	}
 
 	//@RequestMapping(value = "/student", method = RequestMethod.GET,headers = {"Accept=application/*+xml, application/json"}, produces={ "application/*+xml","application/json"})	
-	@RequestMapping(value = "/student", method = RequestMethod.GET, produces={ MediaType.APPLICATION_JSON_VALUE})	
+	@RequestMapping(value = "/student", method = RequestMethod.GET, produces={ MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})	
 	@ResponseBody
 	public List<Student> getAllStudents() {
 		return studentMgr.getAllStudents();

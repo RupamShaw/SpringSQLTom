@@ -19,12 +19,12 @@
 			 <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController" />
 	</context:component-scan>
 <!-- activates annotation driven binding -->
- <mvc:annotation-driven>
+<!--  <mvc:annotation-driven>
       <mvc:message-converters>
      <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
             
-        <!-- <bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/>
-         -->       
+         <bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/>
+             
       </mvc:message-converters>
     </mvc:annotation-driven>
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
@@ -35,6 +35,6 @@
                 <entry key="json" value="application/json"/>
             </map>
         </property>
-         </bean>
+         </bean> -->
 	<mvc:annotation-driven />
 </beans>
