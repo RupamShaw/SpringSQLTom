@@ -9,19 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Controller
 //@RequestMapping(value = "/student", produces={ "application/xml", "application/json"},consumes={ "application/xml", "application/json"})
-@SessionAttributes("student")
+@SessionAttributes("/student")
+@EnableWebMvc
 @Configuration
 @ComponentScan("org.app.service")
+//@ControllerAdvice
 public class StudentController {
 	//@Resource
 	@Autowired
@@ -37,7 +42,8 @@ public class StudentController {
 		return studentMgr.getStudentbyId(studentId);
 	}
 
-	@RequestMapping(value = "/student", method = RequestMethod.GET, produces={ "application/*+xml","application/json"})
+	//@RequestMapping(value = "/student", method = RequestMethod.GET,headers = {"Accept=application/*+xml, application/json"}, produces={ "application/*+xml","application/json"})	
+	@RequestMapping(value = "/student", method = RequestMethod.GET, produces={ MediaType.APPLICATION_JSON_VALUE})	
 	@ResponseBody
 	public List<Student> getAllStudents() {
 		return studentMgr.getAllStudents();
