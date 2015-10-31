@@ -3,6 +3,7 @@
  */
 package org.app.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,6 +25,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
 
 
 /**
@@ -44,7 +48,7 @@ public class StudentService implements StudentMgr{
 	}
 
 	@Override
-	public List<Student> getAllStudents() {
+	public List<Student> getAllStudents() throws JsonGenerationException, JsonMappingException, IOException {
 		String methodName = new Object() {
 		}.getClass().getEnclosingMethod().getName();
 		System.out.println(className + "." + methodName + "() ");

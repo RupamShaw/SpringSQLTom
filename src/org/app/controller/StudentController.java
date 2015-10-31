@@ -1,5 +1,6 @@
 package org.app.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,10 +18,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-@Controller
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
+//import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+
+@RestController
 //@RequestMapping(value = "/student", produces={ "application/xml", "application/json"},consumes={ "application/xml", "application/json"})
 @SessionAttributes("/student")
 @EnableWebMvc
@@ -42,11 +49,19 @@ public class StudentController {
 		return studentMgr.getStudentbyId(studentId);
 	}
 
+	
 	//@RequestMapping(value = "/student", method = RequestMethod.GET,headers = {"Accept=application/*+xml, application/json"}, produces={ "application/*+xml","application/json"})	
-	@RequestMapping(value = "/student", method = RequestMethod.GET, produces={ MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})	
-	@ResponseBody
-	public List<Student> getAllStudents() {
-		return studentMgr.getAllStudents();
+	@RequestMapping(value = "/student/", method = RequestMethod.GET, produces={ MediaType.APPLICATION_ATOM_XML_VALUE,MediaType.APPLICATION_JSON_VALUE})	
+@JacksonXmlElementWrapper(useWrapping=false,localName="st" )
+	@JacksonXmlProperty(localName="student")
+	public @ResponseBody List<Student> getAllStudents() {
+		List<Student> ls=null;
+		try { ls= studentMgr.getAllStudents();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			
+		}
+		return ls;
 	}
 
 	@RequestMapping(value = "/student", method = RequestMethod.POST, produces={ "application/xml", "application/json"},consumes={ "application/xml", "application/json"})

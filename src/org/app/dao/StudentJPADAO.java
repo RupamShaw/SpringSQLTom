@@ -1,5 +1,6 @@
 package org.app.dao;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -9,9 +10,21 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.app.model.Student;
+import org.app.model.StudentL;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 
 @Repository("studentDao")
@@ -109,26 +122,37 @@ String name = student.getName();
 
 	// @SuppressWarnings("finally")
 	@Override
-	public List<Student> listStudents() {
+	@JacksonXmlElementWrapper(useWrapping=false,localName="st" )
+	
+	@JacksonXmlProperty(localName="student")
+
+	public List<Student> listStudents() throws JsonGenerationException, JsonMappingException, IOException {
 		String methodName = new Object() {
 		}.getClass().getEnclosingMethod().getName();
-		
+		 ObjectMapper mapper = new XmlMapper();
+	        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+	    
+	        // Albums albums = mapper.readValue(new URL(url), Albums.class);
+	       
 		String query = "";
+		
 		List<Student> ls = null;
 		
 		query = "select T from " + Student.class.getName() + " T";
 
 		Query q = entityManager.createQuery(query);
 		System.out.println(className + "." + methodName + "() after createquery");
-
+StudentL students=new StudentL();
 		ls = q.getResultList();
+		students.setStudents(ls);
+		mapper.writeValue(System.out, students);
 		// sop is for lazy reading
 		System.out.println(className + "." + methodName + "() list size is " + ls.size());
 		if (ls.size() == 0) {System.out.println("in if ls.size0");
 			throw new EmptyResultDataAccessException("Please Add students there are no students in list", 1);
 		}else{
 			System.out.println("in else ls.size");
-		return ls;
+		return students.getStudents();
 		}
 	}
 

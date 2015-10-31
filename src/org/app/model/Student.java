@@ -9,8 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 @Entity
 @XmlRootElement(name = "student")
+@JacksonXmlRootElement(localName="student")
 public class Student {
 	private static final long serialVersionUID = 1L;
 	@Id

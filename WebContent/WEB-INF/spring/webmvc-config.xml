@@ -16,25 +16,55 @@
 		use-default-filters="false">
 		<context:include-filter expression="org.springframework.stereotype.Controller"
 			type="annotation" />
-			 <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.RestController" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.RestController" />
 	</context:component-scan>
-<!-- activates annotation driven binding -->
-<!--  <mvc:annotation-driven>
-      <mvc:message-converters>
-     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-            
-         <bean class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter"/>
-             
-      </mvc:message-converters>
-    </mvc:annotation-driven>
-	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <property name="mediaTypes">
-            <map>
-                <entry key="atom" value="application/atom+xml"/>
-                <entry key="html" value="text/html"/>
-                <entry key="json" value="application/json"/>
-            </map>
-        </property>
-         </bean> -->
+	<!-- activates annotation driven binding -->
+	<!-- <mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			<bean
+				class="org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter" />
+		</mvc:message-converters>
+	</mvc:annotation-driven> -->
+	<!-- <bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="atom" value="application/atom+xml" />
+				<entry key="html" value="text/html" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+
+		<property name="defaultViews">
+			<list>
+				JSON View
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+				</bean>
+
+
+
+				JAXB XML View
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<constructor-arg>
+						<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+							<property name="classesToBeBound">
+								<list>
+									<value>org.app.model.Student</value>
+								</list>
+							</property>
+						</bean>
+					</constructor-arg>
+				</bean>
+			</list>
+		</property>
+		<property name="ignoreAcceptHeader" value="true" />
+	</bean> -->
+	
+
+
 	<mvc:annotation-driven />
 </beans>
